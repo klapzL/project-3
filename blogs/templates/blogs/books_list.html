@@ -1,0 +1,16 @@
+{% extends 'blogs/_base.html' %}
+
+{% block title %}DB test{% endblock title %}
+
+
+{% block content %}
+    
+    {% for b in books %}
+        <h1>{{b.title}}</h1>
+        <span>{{b.description}}</span>
+        <h3>{{b.price}}</h3>
+        <span class="date">{{b.release_date}}</span>
+    {% endfor %}
+        
+{% endblock content %}
+    

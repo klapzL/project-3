@@ -1,5 +1,10 @@
 from django.db import models
 
+
+def book_cover_directory(instance, filename):
+    return f'{settings.MEDIA_ROOT}/{instance.title}/filename'
+
+
 class Blog(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
@@ -7,6 +12,7 @@ class Blog(models.Model):
     
     def __str__(self):
         return self.title
+
 
 class Book(models.Model):
     title = models.CharField(max_length=200, unique=True)

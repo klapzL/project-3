@@ -1,0 +1,17 @@
+{% extends 'blogs/_base.html' %}
+
+{% block title %}{{book.title}}{% endblock title %}
+
+
+{% block content %}
+<h1>{{book.title}}</h1>
+<div class="details">
+    <img src="{{book.cover.url}}" alt="">
+    <div class="details-descr">
+        <ul class="list-group">
+            <li class="list-group-item">{{book.price}}</li>
+            <!-- <li class="list-group-item"></li> -->
+          </ul>
+    </div>
+</div>
+{% endblock content %}

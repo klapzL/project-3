@@ -4,13 +4,17 @@
 
 
 {% block content %}
-    
+<h1 class="title">Книги</h1>
     {% for b in books %}
-        <h1>{{b.title}}</h1>
-        <span>{{b.description}}</span>
-        <h3>{{b.price}}</h3>
-        <span class="date">{{b.release_date}}</span>
+    <div class="book">
+        <div class="descriptions">
+            <img src="{{b.cover.url}}" alt="">
+            <div class="price">
+                {{b.price}}₽
+            </div>
+            <a href="{% url 'book_details' b.id %}" class="book-link">{{b.title}}</a>
+        </div>
+    </div>
     {% endfor %}
-        
+
 {% endblock content %}
-    

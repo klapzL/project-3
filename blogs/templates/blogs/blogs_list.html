@@ -1,0 +1,11 @@
+{% extends 'blogs/_base.html' %}
+
+{% block title %}DB test{% endblock title %}
+
+{% block content %}
+{% for b in blogs %}
+    <h1 class="heading">{{b.title}}</h1>
+    <p class="text">{{b.text}}</p>
+    <p class="date">{{b.creation_date}}</p>
+{% endfor %}
+{% endblock content %}

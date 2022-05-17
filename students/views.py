@@ -11,6 +11,6 @@ def students_list(request):
 def student_details(request, student_id):
     students = Student.objects.get(id=student_id)
     context = {
-        'students': students
+        'student': students
     }
-    return render(request, 'students/student_details', context)
+    return render(request, 'students/student_details.html', context)

@@ -1,0 +1,45 @@
+{% extends '_base.html' %}
+
+
+{% block title %}Students' List{% endblock title %}
+
+
+{% block content %}
+<div class="row mt-4">
+    <h2>Список учеников</h2>
+    <form class="row gy-2 gx-3 align-items-center">
+        <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Имя">
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Поиск</button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ученик</th>
+                <th scope="col">Школа</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in students %}
+            <tr>
+                <th scope="row">{{s.id}}</th>
+                <td>
+                    <a href="{% url 'student_details' s.id %}">
+                        {{s.surname}}
+                        {{s.name}}
+                    </a>
+                </td>
+                <td>{{s.school}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

@@ -62,10 +62,12 @@
         </div>
     </nav>
     <div class="container">
-        {% block content %}
-        <!-- content -->
-
-        {% endblock content %}
+        <div class="row">
+            {% block content %}
+            <!-- content -->
+    
+            {% endblock content %}
+        </div>
     </div>
     <script src="{% static 'blogs/js/bootstrap.js' %}"></script>
 </body>

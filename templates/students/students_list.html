@@ -5,24 +5,28 @@
 
 
 {% block content %}
-<div class="row mt-4">
     <h2>Список учеников</h2>
-    <form class="row gy-2 gx-3 align-items-center">
-        <div class="col-auto">
+    <form class="row gy-2 gx-3 " action="">
+        <div class="search col-auto">
             <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Имя">
+                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Имя" name="q" value="{{search_query}}">
+            </div>
+            <label class="visually-hidden" for="gradeInput">Класс</label>
+            <div class="grade-search col-md-3 col-2">
+                <input class="form-control" type="number" name="grade" min="1" max="11" id="gradeInput">
             </div>
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary">Поиск</button>
         </div>
     </form>
-    <table class="table table-striped">
+    <table class="table table-striped table-student">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Ученик</th>
+                <th scope="col">Класс</th>
                 <th scope="col">Школа</th>
             </tr>
         </thead>
@@ -36,10 +40,16 @@
                         {{s.name}}
                     </a>
                 </td>
+                <td>{{s.grade}}</td>
                 <td>{{s.school}}</td>
             </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">
+                        Совпадений не найдено
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
 {% endblock content %}

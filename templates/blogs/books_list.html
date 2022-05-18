@@ -5,16 +5,18 @@
 
 {% block content %}
 <h1 class="title">Книги</h1>
+<div class="books">
     {% for b in books %}
-    <div class="book">
-        <div class="descriptions">
-            <img src="{{b.cover.url}}" alt="">
-            <div class="price">
-                {{b.price}}₽
+        <div class="book col">
+            <div class="descriptions">
+                <img src="{{b.cover.url}}" alt="">
+                <div class="price">
+                    {{b.price}}₽
+                </div>
+                <a href="{% url 'book_details' b.id %}" class="book-link">{{b.title}}</a>
             </div>
-            <a href="{% url 'book_details' b.id %}" class="book-link">{{b.title}}</a>
         </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
+</div>
 
 {% endblock content %}

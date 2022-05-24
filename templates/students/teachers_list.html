@@ -1,21 +1,18 @@
 {% extends '_base.html' %}
-{% load static %}
 
-{% block title %}Students' List{% endblock title %}
+
+{% block title %}Teachers' List{% endblock title %}
 
 
 {% block content %}
-    <h2>Список учеников</h2>
+    <h2>Список учителей</h2>
     <form class="row gy-2 gx-3 " action="">
         <div class="search col-auto">
             <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Имя" name="q" value="{{search_query_name}}">
+                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Имя" name="q" value="{{search_query}}">
             </div>
             <label class="visually-hidden" for="gradeInput">Класс</label>
-            <div class="grade-search col-md-3 col-2">
-                <input class="form-control" type="number" name="grade" min="1" max="11" id="gradeInput">
-            </div>
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary">Поиск</button>
@@ -25,28 +22,21 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Ученик</th>
                 <th scope="col">Учитель</th>
-                <th scope="col">Класс</th>
                 <th scope="col">Школа</th>
             </tr>
         </thead>
         <tbody>
-            {% for s in students %}
+            {% for t in teachers %}
             <tr>
-                <th scope="row">{{s.id}}</th>
+                <th scope="row">{{t.id}}</th>
                 <td>
-                    <a class='student-fullname' href="{% url 'student_details' s.id %}">
-                        {{s.surname}}
-                        {{s.name}}
-                    </a>
-                    <a class="edit-logo" href="{% url 'student_update' s.id %}">
-                        <img src="{% static 'students/img/edit_logo.svg' %}" alt="">
+                    <a href="{% url 'teacher_details' t.id %}">
+                        {{t.surname}}
+                        {{t.name}}
                     </a>
                 </td>
-                <td>{{s.teacher}}</td>
-                <td>{{s.grade}}</td>
-                <td>{{s.school}}</td>
+                <td>{{t.school}}</td>
             </tr>
             {% empty %}
                 <tr>

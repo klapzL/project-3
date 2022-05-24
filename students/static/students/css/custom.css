@@ -76,3 +76,6 @@ p {
   -moz-box-shadow: 0px 7px 5px -5px rgba(144, 144, 144, 0.45);
   box-shadow: 0px 7px 5px -5px rgba(144, 144, 144, 0.45);
 }
+.edit_logo {
+  margin-left: 10px;
+}

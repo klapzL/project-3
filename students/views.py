@@ -1,31 +1,84 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Student
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Student, Teacher
+from .forms import StudentForm, TeacherForm
+
 
 def students_list(request):
     students = Student.objects.all()
-    search_query = request.GET.get('q', '')
+    search_query_name = request.GET.get('q', '')
     search_query_grade = request.GET.get('grade')
-    if search_query:
-        students = students.filter(name__contains=search_query)
+    if search_query_name:
+        students = students.filter(name__contains=search_query_name)
     if search_query_grade:
         students = students.filter(grade=search_query_grade)
     context = {
         'students': students,
-        'search_query': search_query,
+        'search_query': search_query_name,
     }
     return render(request, 'students/students_list.html', context)
 
-def student_details(request, student_id):
-    students = Student.objects.get(id=student_id)
-    students = get_object_or_404(Student, pk=student_id)
+
+def teachers_list(request):
+    teachers = Teacher.objects.all()
+    search_query = request.GET.get('q', '')
+    if search_query:
+        teachers = teachers.filter(name__contains=search_query)
     context = {
-        'student': students
+        'teachers': teachers,
+        'search_query': search_query,
+    }
+    return render(request, 'students/teachers_list.html', context)
+
+
+def student_details(request, student_id):
+    student = get_object_or_404(Student, pk=student_id)
+    context = {
+        'student': student
     }
     return render(request, 'students/student_details.html', context)
 
-def student_create(request):
-    # form = Student
-    context = {
 
+def student_create(request):
+    # form = StudentForm()
+    form = StudentForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid:
+            form.save()
+            return redirect('students_list')
+    context = {
+        'form': form
     }
-    return render(request, 'students/student_create', context)
+    return render(request, 'students/student_create.html', context)
+
+
+def teacher_create(request):
+    form = TeacherForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid:
+            form.save()
+            return redirect('teachers_list')
+    context = {
+        'form': form
+    }
+    return render(request, 'students/teacher_create.html', context)
+
+
+def teacher_details(request, teacher_id):
+    teacher = get_object_or_404(Teacher, pk=teacher_id)
+    context = {
+        'teacher': teacher
+    }
+    return render(request, 'students/teacher_details.html', context)
+
+
+def student_update(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    form = StudentForm(request.POST or None, instance=student)
+    if request.method == 'POST':
+        if form.is_valid:
+            form.save()
+            return redirect('students_list')
+    context = {
+        'form': form
+    }
+    return render(request, 'students/student_update.html', context)

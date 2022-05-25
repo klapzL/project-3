@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+
+
+{% block title %}Удаление{% endblock title %}
+
+{% block content %}
+    <h3>
+        Вы действительно хотите удалить ученика {{student.name}}
+    </h3>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Да, я уверен</button>
+        <a class="btn btn-success" href="{% url 'students_list' %}">Нет</a>
+    </form>
+{% endblock content %}
+    
+    

@@ -14,6 +14,7 @@ def students_list(request):
     context = {
         'students': students,
         'search_query': search_query_name,
+        'students_number': students_number
     }
     return render(request, 'students/students_list.html', context)
 
@@ -82,3 +83,14 @@ def student_update(request, student_id):
         'form': form
     }
     return render(request, 'students/student_update.html', context)
+
+
+def student_delete(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    if request.method == 'POST':
+        student.delete()
+        return redirect('students_list')
+    context = {
+        'student': student
+    }
+    return render(request, 'students/student_delete.html', context)

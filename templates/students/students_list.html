@@ -34,11 +34,14 @@
         <tbody>
             {% for s in students %}
             <tr>
-                <th scope="row">{{s.id}}</th>
+                <th scope="row">{{forloop.counter}}</th>
                 <td>
                     <a class='student-fullname' href="{% url 'student_details' s.id %}">
                         {{s.surname}}
                         {{s.name}}
+                    </a>
+                    <a class="delete-logo" href="{% url 'student_delete' s.id %}">
+                        <img src="{% static 'students/img/trash.svg' %}" alt="">
                     </a>
                     <a class="edit-logo" href="{% url 'student_update' s.id %}">
                         <img src="{% static 'students/img/edit_logo.svg' %}" alt="">

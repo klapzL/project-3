@@ -99,7 +99,12 @@ form .row {
 }
 .edit-logo {
   margin-left: 10px;
+  float: right;
 }
 a {
   text-decoration: none;
+}
+.delete-logo {
+  float: right;
+  margin-left: 10px;
 }

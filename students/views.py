@@ -4,9 +4,14 @@ from .forms import StudentForm, TeacherForm
 
 
 def students_list(request):
-    students = Student.objects.all()
-    search_query_name = request.GET.get('q', '')
     search_query_grade = request.GET.get('grade')
+    search_query_name = request.GET.get('q', '')
+    teacher_search = request.GET.get('t', '')
+    students = Student.objects.all()
+    teachers_non_repeated = [t for t in Teacher.objects.all()]
+    if teacher_search:
+        teacher = Teacher.objects.get(teacher_search)
+        students = Student.objects.filter(teacher=teacher)
     if search_query_name:
         students = students.filter(name__contains=search_query_name)
     if search_query_grade:
@@ -14,10 +19,15 @@ def students_list(request):
     context = {
         'students': students,
         'search_query': search_query_name,
-        'students_number': students_number
+        'teacher_search': teacher_search,
+        'teachers_list': teachers_non_repeated
     }
     return render(request, 'students/students_list.html', context)
 
+
+def students_by_teachers(request, teacher_id):
+    teacher = Teacher.objects.get(id=teacher_id)
+    student = Student.objects.filter(teacher=teacher)
 
 def teachers_list(request):
     teachers = Teacher.objects.all()

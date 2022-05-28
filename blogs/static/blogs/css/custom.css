@@ -87,6 +87,7 @@ p {
 .table-student {
   margin-top: 20px;
   width: fit-content;
+  margin-right: 50px;
 }
 form .row {
   margin-top: -30em;
@@ -107,4 +108,11 @@ a {
 .delete-logo {
   float: right;
   margin-left: 10px;
+}
+.students-list {
+  display: flex;
+
+}
+.teachers-filter {
+  width: 20rem;
 }

@@ -28,6 +28,7 @@ def students_list(request):
 def students_by_teachers(request, teacher_id):
     teacher = Teacher.objects.get(id=teacher_id)
     student = Student.objects.filter(teacher=teacher)
+    
 
 def teachers_list(request):
     teachers = Teacher.objects.all()
@@ -50,10 +51,9 @@ def student_details(request, student_id):
 
 
 def student_create(request):
-    # form = StudentForm()
-    form = StudentForm(request.POST or None)
+    form = StudentForm(request.POST or None, files=request.FILES)
     if request.method == 'POST':
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             return redirect('students_list')
     context = {

@@ -1,13 +1,41 @@
 {% extends '_base.html' %}
-
+{% load widget_tweaks %}
 
 {% block title %} Student creation {% endblock title %}
-    
+
 {% block content %}
-<h1>Добавление</h1>
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %} {{form.as_p}}
-    <button type="submit" class="btn btn-primary">Создать</button>
-</form>
+<div class="form-crud">
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% for err in field.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{err|escape}}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <h1>Добавление</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label class="form-label">Имя</label>
+        {% render_field form.name class='form-control form-field' placeholder='Введите имя' %}
+        <label class="form-label">Фамилия</label>
+        {% render_field form.surname class='form-control form-field' placeholder='Введите фамили'%}
+        <label class="form-label">Дата рождения</label>
+        {% render_field form.birth_date class='form-control form-field' placeholder='Введите дату рождения'%}
+        <label class="form-label">Учитель</label>
+        {% render_field form.teacher class='form-control form-field'%}
+        <label class="form-label" class="photo-field">Фото</label>
+        {% render_field form.photo class='form-control form-field' %}
+        <div class="form-dig">
+            <label class="form-label" class="form-label">Номер школы</label>
+            {% render_field form.school class='form-control form-field form-field-dig' %}
+            <label class="form-label" class="form-label">Средняя оценка</label>
+            {% render_field form.average_mark class='form-control form-field form-field-dig' %}
+        </div>
+        <button type="submit" class="btn btn-primary btn-create">Создать</button>
+    </form>
+</div>
 {% endblock content %}
-    

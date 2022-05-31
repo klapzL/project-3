@@ -16,7 +16,7 @@ class Student(models.Model):
     name = models.CharField(max_length=18, null=False)
     surname = models.CharField(max_length=24, null=False)
     birth_date = models.DateField(null=False)
-    school = models.CharField(max_length=48, null=False)
+    school = models.IntegerField(null=False)
     grade = models.IntegerField(null=False)
     average_mark = models.DecimalField(decimal_places=2, max_digits=3,null=False)
     photo = models.ImageField(upload_to='covers', null=True, blank=True)

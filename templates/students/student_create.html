@@ -5,35 +5,113 @@
 
 {% block content %}
 <div class="form-crud">
-
-    {% if form.errors %}
-        {% for field in form %}
-            {% for err in field.errors %}
-                <div class="alert alert-danger" role="alert">
-                    {{err|escape}}
-                </div>
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
-
     <h1>Добавление</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <label class="form-label">Имя</label>
         {% render_field form.name class='form-control form-field' placeholder='Введите имя' %}
+
+        {% if form.name.errors %}
+        <div class="alert alert-danger alert-message" role="alert">
+            <ul class="error-message">
+                <li>
+                    {{form.name.errors|striptags}}
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+
         <label class="form-label">Фамилия</label>
-        {% render_field form.surname class='form-control form-field' placeholder='Введите фамили'%}
+        {% render_field form.surname class='form-control form-field' placeholder='Введите фамилию'%}
+
+        {% if form.surname.errors %}
+        <div class="alert alert-danger alert-message" role="alert">
+            <ul class="error-message">
+                <li>
+                    {{form.surname.errors|striptags}}
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+        <label class="form-label">Класс</label>
+        {% render_field form.grade class='form-control form-field' placeholder='Введите класс'%}
+        {% if form.grade.errors %}
+        <div class="alert alert-danger alert-message" role="alert">
+            <ul class="error-message">
+                <li>
+                    {{form.grade.errors|striptags}}
+                </li>
+            </ul>
+        </div>
+        {% endif %}
         <label class="form-label">Дата рождения</label>
         {% render_field form.birth_date class='form-control form-field' placeholder='Введите дату рождения'%}
+
+        {% if form.birth_date.errors %}
+        <div class="alert alert-danger alert-message" role="alert">
+            <ul class="error-message">
+                <li>
+                    {{form.birth_date.errors|striptags}}
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+
         <label class="form-label">Учитель</label>
         {% render_field form.teacher class='form-control form-field'%}
+
+        {% if form.teacher.errors %}
+        <div class="alert alert-danger alert-message" role="alert">
+            <ul class="error-message">
+                <li>
+                    {{form.teacher.errors|striptags}}
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+
         <label class="form-label" class="photo-field">Фото</label>
-        {% render_field form.photo class='form-control form-field' %}
+        {% render_field form.photo class='form-control form-field' onchange="showPreview(event)" %}
+        <div class="photo-preview">
+            <img src="" alt="" id="file-preview">
+        </div>
+
+        {% if form.photo.errors %}
+        <div class="alert alert-danger alert-message" role="alert">
+            <ul class="error-message">
+                <li>
+                    {{form.photo.errors|striptags}}
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+
         <div class="form-dig">
             <label class="form-label" class="form-label">Номер школы</label>
-            {% render_field form.school class='form-control form-field form-field-dig' %}
+            {% render_field form.school class='form-control form-field form-field-dig' %} 
             <label class="form-label" class="form-label">Средняя оценка</label>
             {% render_field form.average_mark class='form-control form-field form-field-dig' %}
+            
+            {% if form.school.errors %}
+            <div class="alert alert-danger alert-message" role="alert">
+                <ul class="error-message">
+                    <li>
+                        {{form.school.errors|striptags}}
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+            
+            {% if form.average_mark.errors %}
+            <div class="alert alert-danger alert-message" role="alert">
+                <ul class="error-message">
+                    <li>
+                        {{form.average_mark.errors|striptags}}
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+
         </div>
         <button type="submit" class="btn btn-primary btn-create">Создать</button>
     </form>

@@ -117,7 +117,7 @@ a {
   width: 20rem;
 }
 .form-crud {
-  width: 30em;
+  width: 20em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -130,12 +130,26 @@ a {
 .form-dig {
   display: flex;
   margin-top: 25px;
+  flex-wrap: wrap;
+  width: 30em;
 }
 .form-label {
-  margin-top: 10px;
+  margin-top: 7px;
 }
 .form-field-dig {
-  width: 80px;
+  width: 70px;
   margin-right: 25px;
   margin-left: 5px;
+}
+.alert-message {
+  margin-top: 5px;
+  position: relative;
+  width: fit-content;
+  height: 4em;
+  margin-right: 5px;
+  /* margin-bottom: -3px; */
+}
+
+.error-message {
+  margin-right: 15px;
 }

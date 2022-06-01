@@ -19,7 +19,7 @@ class Student(models.Model):
     school = models.IntegerField(null=False)
     grade = models.IntegerField(null=False)
     average_mark = models.DecimalField(decimal_places=2, max_digits=3,null=False)
-    photo = models.ImageField(upload_to='covers', null=True, blank=True)
+    photo = models.ImageField(upload_to="covers/", null=True, blank=True)
     teacher = models.ForeignKey(Teacher, null=True, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -56,6 +56,7 @@ def student_create(request):
         if form.is_valid():
             form.save()
             return redirect('students_list')
+        print(form.errors)
     context = {
         'form': form
     }
@@ -65,7 +66,7 @@ def student_create(request):
 def teacher_create(request):
     form = TeacherForm(request.POST or None)
     if request.method == 'POST':
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             return redirect('teachers_list')
     context = {

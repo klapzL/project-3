@@ -12,6 +12,7 @@ class StudentForm(forms.ModelForm):
             'school', 'grade', 'average_mark',
             'teacher', 'photo'
         )
+        enctype = "multipart/form-data"
 
 class TeacherForm(forms.ModelForm):
     class Meta:

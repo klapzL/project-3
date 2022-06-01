@@ -68,7 +68,17 @@
             {% endblock content %}
         </div>
     </div>
-    <script src="{% static 'blogs/js/bootstrap.js' %}"></script>
+    <script src="{% static 'students/js/bootstrap.js' %}"></script>
+    <script>
+    function showPreview(event){
+        if (event.target.files.length > 0) {
+            let src = URL.createObjectURL(event.target.files[0]);
+            let preview = document.getElementById('file-preview');
+            preview.src = src;
+            preview.style.display = 'block';
+        }
+    }
+    </script>
 </body>
 
 </html>

@@ -23,11 +23,6 @@ def students_list(request):
         'teachers_list': teachers_non_repeated
     }
     return render(request, 'students/students_list.html', context)
-
-
-def students_by_teachers(request, teacher_id):
-    teacher = Teacher.objects.get(id=teacher_id)
-    student = Student.objects.filter(teacher=teacher)
     
 
 def teachers_list(request):
